@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
     <description>yifenxiang</description>
 
-
     <modules>
         <module>yifenxiang-admin</module>
         <module>yifenxiang-framework</module>

@@ -19,9 +19,8 @@
     <script src="statics/libs/respond.min.js"></script>
     <![endif]-->
 </head>
-<p>hello word!</p>
 <!--<body class="signin hold-transition login-page">-->
-<div >
+<div class="loginscreen animated fadeInDown signinpanel" id="loginBox" v-cloak>
     <div class="row">
         <div class="col-md-5">
             <Card class="m-t text-center" style="background: rgba(109, 109, 109, 0.23);border: 0px solid #dddee1;">
@@ -51,64 +50,64 @@
     </div>
 </div>
 <!-- /.login-box -->
-<!--<script src="statics/libs/jquery.min.js"></script>-->
-<!--<script src="statics/libs/vue.min.js"></script>-->
-<!--<script src="statics/libs/iview.min.js"></script>-->
-<!--<script src="statics/libs/bootstrap.min.js"></script>-->
-<!--<script src="statics/plugins/slimscroll/jquery.slimscroll.min.js"></script>-->
-<!--<script src="statics/libs/fastclick.min.js"></script>-->
-<!--<script type="text/javascript">-->
-    <!--var vm = new Vue({-->
-        <!--el: '#loginBox',-->
-        <!--data: {-->
-            <!--username: 'admin',-->
-            <!--password: 'admin',-->
-            <!--captcha: '',-->
-            <!--src: 'captcha.jpg'-->
-        <!--},-->
-        <!--beforeCreate: function () {-->
-            <!--if (self != top) {-->
-                <!--top.location.href = self.location.href;-->
-            <!--}-->
-        <!--},-->
-        <!--methods: {-->
-            <!--refreshCode: function () {-->
-                <!--this.src = "captcha.jpg?t=" + $.now();-->
-            <!--},-->
-            <!--login: function (event) {-->
-                <!--if (vm.username == '') {-->
-                    <!--iview.Message.warning("用户名为空");-->
-                    <!--return false;-->
-                <!--}-->
-                <!--if (vm.password == '') {-->
-                    <!--iview.Message.warning("密码为空");-->
-                    <!--return false;-->
-                <!--}-->
-                <!--if (vm.captcha == '') {-->
-                    <!--iview.Message.warning("验证码为空");-->
-                    <!--return false;-->
-                <!--}-->
-                <!--var data = "username=" + vm.username + "&password=" + vm.password + "&captcha=" + vm.captcha;-->
-                <!--$.ajax({-->
-                    <!--type: "POST",-->
-                    <!--url: "sys/login",-->
-                    <!--data: data,-->
-                    <!--dataType: "json",-->
-                    <!--success: function (result) {-->
-                        <!--if (result.code == 0) {//登录成功-->
-                            <!--parent.location.href = 'index.html';-->
-                        <!--} else {-->
-                            <!--vm.refreshCode();-->
-                            <!--iview.Message.error(result.msg);-->
-                        <!--}-->
-                    <!--}-->
-                <!--});-->
-            <!--}-->
-        <!--},-->
-        <!--created: function () {-->
+<script src="statics/libs/jquery.min.js"></script>
+<script src="statics/libs/vue.min.js"></script>
+<script src="statics/libs/iview.min.js"></script>
+<script src="statics/libs/bootstrap.min.js"></script>
+<script src="statics/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="statics/libs/fastclick.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#loginBox',
+        data: {
+            username: 'admin',
+            password: 'admin',
+            captcha: '',
+            src: 'captcha.jpg'
+        },
+        beforeCreate: function () {
+            if (self != top) {
+                top.location.href = self.location.href;
+            }
+        },
+        methods: {
+            refreshCode: function () {
+                this.src = "captcha.jpg?t=" + $.now();
+            },
+            login: function (event) {
+                if (vm.username == '') {
+                    iview.Message.warning("用户名为空");
+                    return false;
+                }
+                if (vm.password == '') {
+                    iview.Message.warning("密码为空");
+                    return false;
+                }
+                if (vm.captcha == '') {
+                    iview.Message.warning("验证码为空");
+                    return false;
+                }
+                var data = "username=" + vm.username + "&password=" + vm.password + "&captcha=" + vm.captcha;
+                $.ajax({
+                    type: "POST",
+                    url: "sys/login",
+                    data: data,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {//登录成功
+                            parent.location.href = 'index.html';
+                        } else {
+                            vm.refreshCode();
+                            iview.Message.error(result.msg);
+                        }
+                    }
+                });
+            }
+        },
+        created: function () {
 
-        <!--}-->
-    <!--});-->
-<!--</script>-->
+        }
+    });
+</script>
 </body>
 </html>
